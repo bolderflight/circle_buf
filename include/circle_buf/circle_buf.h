@@ -13,9 +13,9 @@
 
 class CircularBuffer {
  public:
-  CircularBuffer(unsigned int size);
-  unsigned int Write(uint8_t *data, unsigned int size);
-  unsigned int Read(uint8_t *data, unsigned int size);
+  explicit CircularBuffer(unsigned int size);
+  unsigned int Write(const std::vector<uint8_t> &data);
+  std::vector<uint8_t> Read(unsigned int bytes);
   unsigned int Size();
   unsigned int Capacity();
 
