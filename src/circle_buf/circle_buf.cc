@@ -9,11 +9,6 @@
 #include <string.h>
 #include <algorithm>
 
-CircularBuffer::CircularBuffer(unsigned int size) {
-  capacity_ = size;
-  buffer_.resize(size);
-}
-
 unsigned int CircularBuffer::Write(const std::vector<uint8_t> &data) {
   if (data.size() == 0) return 0;
   unsigned int bytes_to_write = std::min((unsigned int)data.size(), capacity_ - size_);
