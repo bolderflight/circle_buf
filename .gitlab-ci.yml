@@ -1,0 +1,31 @@
+stages:
+  - lint
+  - build
+  - test
+
+Lint:
+  stage: lint
+  tags:
+    - bfs
+  script: 
+    - cpplint.py --verbose=0 --filter=-whitespace,-line_length include/circle_buf/circle_buf.h
+
+Compile:
+  stage: build
+  tags:
+    - bfs
+  script:
+    - mkdir build
+    - cd build
+    - cmake ..
+    - make
+  artifacts:
+    paths:
+      - build/circle_buf_test
+  
+Test Types:
+  stage: test
+  tags:
+    - bfs
+  script:
+    - ./build/circle_buf_test

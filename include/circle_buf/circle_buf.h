@@ -8,18 +8,18 @@
 #ifndef INCLUDE_CIRCLE_BUF_CIRCLE_BUF_H_
 #define INCLUDE_CIRCLE_BUF_CIRCLE_BUF_H_
 
-#include <stdint.h>
 #include <string.h>
 #include <array>
 #include <algorithm>
+#include <cstdint>
 
-template<unsigned int ARRAY_SIZE>
+template<std::size_t ARRAY_SIZE>
 class CircularBuffer {
  public:
-  unsigned int Write(uint8_t *data, unsigned int bytes) {
+  std::size_t Write(uint8_t *data, std::size_t bytes) {
     if ((bytes == 0) || (!data)) return 0;
-    unsigned int bytes_to_write = std::min(bytes, capacity_ - size_);
-    unsigned int space_avail = capacity_ - end_index_;
+    std::size_t bytes_to_write = std::min(bytes, capacity_ - size_);
+    std::size_t space_avail = capacity_ - end_index_;
     if (space_avail < bytes_to_write) {
       memcpy(buffer_.data() + end_index_, data, space_avail);
       memcpy(buffer_.data(), data + space_avail, bytes_to_write - space_avail);
@@ -31,10 +31,10 @@ class CircularBuffer {
     size_ += bytes_to_write;
     return bytes_to_write;
   }
-  unsigned int Read(uint8_t *data, unsigned int bytes) {
+  std::size_t Read(uint8_t *data, std::size_t bytes) {
     if ((bytes == 0) || (!data)) return 0;
-    unsigned int bytes_to_read = std::min(bytes, size_);
-    unsigned int space_avail = capacity_ - begin_index_;
+    std::size_t bytes_to_read = std::min(bytes, size_);
+    std::size_t space_avail = capacity_ - begin_index_;
     if (space_avail < bytes_to_read) {
       memcpy(data, buffer_.data() + begin_index_, space_avail);
       memcpy(data + space_avail, buffer_.data(), bytes_to_read - space_avail);
@@ -46,19 +46,19 @@ class CircularBuffer {
     size_ -= bytes_to_read;
     return bytes_to_read;
   }
-  unsigned int Size() {
+  std::size_t Size() {
     return size_;
   }
-  unsigned int Capacity() {
+  std::size_t Capacity() {
     return capacity_;
   }
 
  private:
   std::array<uint8_t, ARRAY_SIZE> buffer_;
-  unsigned int begin_index_ = 0;
-  unsigned int end_index_ = 0;
-  unsigned int capacity_ = ARRAY_SIZE;
-  unsigned int size_ = 0;
+  std::size_t begin_index_ = 0;
+  std::size_t end_index_ = 0;
+  std::size_t capacity_ = ARRAY_SIZE;
+  std::size_t size_ = 0;
 };
 
 #endif  // INCLUDE_CIRCLE_BUF_CIRCLE_BUF_H_
