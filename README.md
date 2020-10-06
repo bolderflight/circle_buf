@@ -26,34 +26,46 @@ This class implements the circular buffer.
 
 ## Methods
 
-**CircularBuffer<BUFFER_SIZE>** Creates a circular buffer object, with a buffer size given by BUFFER_SIZE in bytes.
+**CircularBuffer<typename T, std::size_t N>** Creates a circular buffer object, of type *T* with buffer size *N*.
 
 ```C++
-/* Create a 10 byte circular buffer */
-CircularBuffer<10> buff;
+/* Create a 10 byte circular buffer of uint8_t */
+CircularBuffer<uint8_t, 10> buff;
 ```
 
-**std::size_t Write(uint8_t &ast;data, std::size_t bytes)** Writes data into the buffer given a pointer to the data and the number of bytes to write. Returns the number of bytes written into the buffer. Note that the buffer prevents over-writing data, so the number of bytes written may be less than the number of bytes to write.
+**bool Write(T val)** Writes a single value to the buffer. Note the buffer prevents over-writing data. This method returns true on success or false on failure.
+
+```C++
+bool status = buff.Write(3);
+```
+
+**std::size_t Write(T &ast;data, std::size_t len)** Writes data into the buffer given a pointer to the data and the number of elements to write. Returns the number of elements written into the buffer. Note that the buffer prevents over-writing data, so the number of elements written may be less than the number of elements to write.
 
 ```C++
 uint8_t test[] = {1, 2, 3, 4, 5};
 std::size_t ret = buff.Write(test, sizeof(test));
 ```
 
-**std::size_t Read(uint8_t &ast;data, std::size_t bytes)** Reads bytes from the buffer given a pointer to store the data and the maximum number of bytes to read. Returns the number of bytes read off the buffer.
+**T Read()** Reads a single value from the buffer. If the buffer is empty, returns 0.
+
+```C++
+uint8_t val = buff.Read();
+```
+
+**std::size_t Read(T &ast;data, std::size_t len)** Reads elements from the buffer given a pointer to store the data and the maximum number of elements to read. Returns the number of elements read off the buffer.
 
 ```C++
 uint8_t read_val[20];
 std::size_t ret = buff.Read(read_val, sizeof(read_val));
 ```
 
-**std::size_t Capacity()** Returns the capacity of the circular buffer. This will always be equal to the BUFFER_SIZE used during construction.
+**std::size_t Capacity()** Returns the capacity of the circular buffer. This will always be equal to *N* used during construction.
 
 ```C++
 std::cout << buff.Capacity() << std::endl;
 ```
 
-**std::size_t Size()** Returns the number of bytes currently stored in the buffer.
+**std::size_t Size()** Returns the number of elements currently stored in the buffer.
 
 ```C++
 std::cout << buff.Size() << std::endl;

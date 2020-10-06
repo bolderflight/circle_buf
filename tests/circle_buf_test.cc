@@ -10,7 +10,7 @@
 
 /* Test null pointers */
 TEST(CircleBuff, NullPtrWrite) {
-  CircularBuffer<100> buff;
+  CircularBuffer<uint8_t, 100> buff;
   std::size_t bytes_written = buff.Write(nullptr, 0);
   std::size_t bytes_read = buff.Read(nullptr, 0);
   EXPECT_EQ(0, bytes_written);
@@ -18,7 +18,7 @@ TEST(CircleBuff, NullPtrWrite) {
 }
 /* Test 0 length */
 TEST(CircleBuff, ZeroLen) {
-  CircularBuffer<100> buff;
+  CircularBuffer<uint8_t, 100> buff;
   uint8_t data[0];
   std::size_t bytes_written = buff.Write(data, sizeof(data));
   std::size_t bytes_read = buff.Read(data, sizeof(data));
@@ -27,7 +27,7 @@ TEST(CircleBuff, ZeroLen) {
 }
 /* Test expected results */
 TEST(CircleBuff, Expected) {
-  CircularBuffer<10> buff;
+  CircularBuffer<uint8_t, 10> buff;
   uint8_t data[5];
   EXPECT_EQ(10, buff.Capacity());
   EXPECT_EQ(0, buff.Size());
