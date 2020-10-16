@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.1.1
+- Updated license to MIT
+
 ## v1.1.0
 - Templated the container type
 - Added single element read and write methods
