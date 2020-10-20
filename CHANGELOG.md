@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.2.0
+- Added method to clear the buffer
+
 ## v1.1.2
 - Updated CONTRIBUTING
 
