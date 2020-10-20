@@ -49,4 +49,17 @@ TEST(CircleBuff, Expected) {
   EXPECT_EQ(10, bytes_read);
   EXPECT_EQ(10, buff.Capacity());
   EXPECT_EQ(0, buff.Size());
+  for (int i = 0; i < 10; i++) {
+    buff.Write(data2[i]);
+  }
+  EXPECT_EQ(10, buff.Capacity());
+  EXPECT_EQ(10, buff.Size());
+  for (int i = 0; i < 5; i++) {
+    buff.Read();
+  }
+  EXPECT_EQ(10, buff.Capacity());
+  EXPECT_EQ(5, buff.Size());
+  buff.Clear();
+  EXPECT_EQ(10, buff.Capacity());
+  EXPECT_EQ(0, buff.Size());
 }

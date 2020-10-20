@@ -70,3 +70,9 @@ std::cout << buff.Capacity() << std::endl;
 ```C++
 std::cout << buff.Size() << std::endl;
 ```
+
+**void Clear()** Empties the buffer.
+
+```C++
+buff.Clear();
+```

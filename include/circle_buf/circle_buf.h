@@ -70,6 +70,11 @@ class CircularBuffer {
   std::size_t Capacity() {
     return capacity_;
   }
+  void Clear() {
+    begin_index_ = 0;
+    end_index_ = 0;
+    size_ = 0;
+  }
 
  private:
   std::array<T, N> buffer_;
