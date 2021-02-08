@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.2.1
+- Updated CONTRIBUTING
+- Updated CI/CD pipeline to no longer ignore line length limits
+- Modified circle_buf.h to respect the line length limits
+
 ## v1.2.0
 - Added method to clear the buffer
 
