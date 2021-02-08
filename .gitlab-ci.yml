@@ -8,7 +8,7 @@ Lint:
   tags:
     - bfs
   script: 
-    - cpplint.py --verbose=0 --filter=-whitespace,-line_length include/circle_buf/circle_buf.h
+    - cpplint.py --verbose=0 include/circle_buf/circle_buf.h
 
 Compile:
   stage: build
