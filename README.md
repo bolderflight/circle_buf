@@ -20,6 +20,9 @@ make
 
 This will build the library, an example executable called *circle_buf_example*, and an executable for testing using the Google Test framework, called *circle_buf_test*. The example executable source file is located at *examples/circle_buf_example.cc*.
 
+# Namespace
+This library is within the namespace *bfs*
+
 # CircularBuffer
 This class implements the circular buffer.
 
@@ -29,7 +32,7 @@ This class implements the circular buffer.
 
 ```C++
 /* Create a 10 byte circular buffer of uint8_t */
-CircularBuffer<uint8_t, 10> buff;
+bfs::CircularBuffer<uint8_t, 10> buff;
 ```
 
 **bool Write(T val)** Writes a single value to the buffer. Note the buffer prevents over-writing data. This method returns true on success or false on failure.
