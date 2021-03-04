@@ -2,7 +2,25 @@
 * Brian R Taylor
 * brian.taylor@bolderflight.com
 * 
-* Copyright (c) 2020 Bolder Flight Systems
+* Copyright (c) 2021 Bolder Flight Systems Inc
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the “Software”), to
+* deal in the Software without restriction, including without limitation the
+* rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+* sell copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+* FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+* IN THE SOFTWARE.
 */
 
 #include "circle_buf/circle_buf.h"
@@ -10,7 +28,7 @@
 
 /* Test null pointers */
 TEST(CircleBuff, NullPtrWrite) {
-  CircularBuffer<uint8_t, 100> buff;
+  bfs::CircularBuffer<uint8_t, 100> buff;
   std::size_t bytes_written = buff.Write(nullptr, 0);
   std::size_t bytes_read = buff.Read(nullptr, 0);
   EXPECT_EQ(0, bytes_written);
@@ -18,7 +36,7 @@ TEST(CircleBuff, NullPtrWrite) {
 }
 /* Test 0 length */
 TEST(CircleBuff, ZeroLen) {
-  CircularBuffer<uint8_t, 100> buff;
+  bfs::CircularBuffer<uint8_t, 100> buff;
   uint8_t data[0];
   std::size_t bytes_written = buff.Write(data, sizeof(data));
   std::size_t bytes_read = buff.Read(data, sizeof(data));
@@ -27,7 +45,7 @@ TEST(CircleBuff, ZeroLen) {
 }
 /* Test expected results */
 TEST(CircleBuff, Expected) {
-  CircularBuffer<uint8_t, 10> buff;
+  bfs::CircularBuffer<uint8_t, 10> buff;
   uint8_t data[5];
   EXPECT_EQ(10, buff.Capacity());
   EXPECT_EQ(0, buff.Size());

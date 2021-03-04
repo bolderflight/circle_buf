@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.0.0
+- Updated to namespace *bfs*
+
 ## v1.2.1
 - Updated CONTRIBUTING
 - Updated CI/CD pipeline to no longer ignore line length limits
