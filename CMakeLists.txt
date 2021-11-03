@@ -1,22 +1,24 @@
 cmake_minimum_required(VERSION 3.13)
 # Project information
 project(CircularBuffer
-	VERSION 2.0.0
+	VERSION 3.0.0
 	DESCRIPTION "Circular buffer library."
 	LANGUAGES CXX
 )
+# Add definition that we're building with CMake
+add_definitions(-D__CMAKE__)
 # Add the library target
 add_library(circle_buf INTERFACE)
 # Setup include directories 
-target_include_directories(circle_buf INTERFACE include/)
+target_include_directories(circle_buf INTERFACE src/)
 
 # Example and test if this project is built separately
 if (PROJECT_NAME STREQUAL CMAKE_PROJECT_NAME)
 	# Add the example target
-	add_executable(circle_buf_example examples/circle_buf_example.cc)
+	add_executable(circle_buf_example examples/cmake/circle_buf_example.cc)
 	# Add the includes
 	target_include_directories(circle_buf_example PUBLIC 
-		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
 		$<INSTALL_INTERFACE:include>
 	)
 	# Link libraries to the example target
