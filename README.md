@@ -1,7 +1,7 @@
 
 [![Pipeline](https://gitlab.com/bolderflight/software/circle_buf/badges/main/pipeline.svg)](https://gitlab.com/bolderflight/software/circle_buf/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-![Bolder Flight Systems Logo](https://github.com/bolderflight/bolderflight.github.io/blob/master/img/logo-words_75.png) &nbsp; &nbsp; ![Arduino Logo](https://github.com/bolderflight/bolderflight.github.io/blob/master/img/arduino_logo_75.png)
+![Bolder Flight Systems Logo](img/logo-words_75.png) &nbsp; &nbsp; ![Arduino Logo](img/arduino_logo_75.png)
 
 # Circular buffer
 This library implements a first in, first out [circular buffer](https://en.wikipedia.org/wiki/Circular_buffer), methods are provided for writing to and reading from the buffer. This library is compatible with Arduino and with CMake build systems. It would also be easy to include with other projects, since it is a header only library consisting of a single file.
