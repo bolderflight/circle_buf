@@ -8,7 +8,7 @@ Lint:
   tags:
     - bfs
   script: 
-    - cpplint --verbose=0 include/circle_buf/circle_buf.h
+    - cpplint --verbose=0 src/circle_buf.h
 
 Compile:
   stage: build
