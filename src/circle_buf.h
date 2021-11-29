@@ -27,14 +27,12 @@
 #define SRC_CIRCLE_BUF_H_
 
 /* Arduino IDE built */
-#if defined(ARDUINO) && !defined(__CMAKE__)
+#if defined(ARDUINO)
 #include <Arduino.h>
-/* Built by CMake or used in another build system */
-#else
+#endif
 #include <string.h>
 #include <stdint.h>
 #include <algorithm>
-#endif
 
 namespace bfs {
 
@@ -52,12 +50,7 @@ class CircularBuffer {
   }
   size_t Write(T * const data, const size_t len) {
     if ((len == 0) || (!data)) return 0;
-    /* Arduino uses a macro for min / max */
-    #if defined(ARDUINO) && !defined(__CMAKE__)
-    vals_to_write_ = min(len, capacity_ - size_);  //NOLINT
-    #else
-    vals_to_write_ = std::min(len, capacity_ - size_);  //NOLINT
-    #endif
+    vals_to_write_ = std::min(len, capacity_ - size_);
     space_avail_ = capacity_ - end_index_;
     if (space_avail_ < vals_to_write_) {
       memcpy(buffer_ + end_index_, data, space_avail_ * sizeof(T));
@@ -82,12 +75,7 @@ class CircularBuffer {
   }
   size_t Read(T * const data, const size_t len) {
     if ((len == 0) || (!data)) return 0;
-    /* Arduino uses a macro for min / max */
-    #if defined(ARDUINO) && !defined(__CMAKE__)
-    vals_to_read_ = min(len, size_);  //NOLINT
-    #else
-    vals_to_read_ = std::min(len, size_);  //NOLINT
-    #endif
+    vals_to_read_ = std::min(len, size_);
     space_avail_ = capacity_ - begin_index_;
     if (space_avail_ < vals_to_read_) {
       memcpy(data, buffer_ + begin_index_, space_avail_ * sizeof(T));
