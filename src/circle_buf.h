@@ -26,18 +26,18 @@
 #ifndef SRC_CIRCLE_BUF_H_
 #define SRC_CIRCLE_BUF_H_
 
-/* Arduino IDE built */
 #if defined(ARDUINO)
 #include <Arduino.h>
 #endif
-#include <string.h>
-#include <stdint.h>
+#include <cstring>
+#include <cstddef>
+#include <cstdint>
 #include <algorithm>
 
 namespace bfs {
 
-template<typename T, size_t N>
-class CircularBuffer {
+template<typename T, std::size_t N>
+class CircleBuf {
  public:
   bool Write(const T val) {
     if (capacity_ - size_) {
@@ -48,7 +48,7 @@ class CircularBuffer {
     }
     return false;
   }
-  size_t Write(T * const data, const size_t len) {
+  std::size_t Write(T * const data, const std::size_t len) {
     if ((len == 0) || (!data)) return 0;
     vals_to_write_ = std::min(len, capacity_ - size_);
     space_avail_ = capacity_ - end_index_;
@@ -73,7 +73,7 @@ class CircularBuffer {
     }
     return static_cast<T>(0);
   }
-  size_t Read(T * const data, const size_t len) {
+  std::size_t Read(T * const data, const std::size_t len) {
     if ((len == 0) || (!data)) return 0;
     vals_to_read_ = std::min(len, size_);
     space_avail_ = capacity_ - begin_index_;
@@ -89,8 +89,8 @@ class CircularBuffer {
     size_ -= vals_to_read_;
     return vals_to_read_;
   }
-  inline size_t size() const {return size_;}
-  inline size_t capacity() const {return capacity_;}
+  inline std::size_t size() const {return size_;}
+  inline std::size_t capacity() const {return capacity_;}
   void Clear() {
     begin_index_ = 0;
     end_index_ = 0;
@@ -99,11 +99,11 @@ class CircularBuffer {
 
  private:
   T buffer_[N];
-  size_t begin_index_ = 0;
-  size_t end_index_ = 0;
-  size_t capacity_ = N;
-  size_t size_ = 0;
-  size_t vals_to_write_, vals_to_read_, space_avail_;
+  std::size_t begin_index_ = 0;
+  std::size_t end_index_ = 0;
+  std::size_t capacity_ = N;
+  std::size_t size_ = 0;
+  std::size_t vals_to_write_, vals_to_read_, space_avail_;
 };
 
 }  // namespace bfs

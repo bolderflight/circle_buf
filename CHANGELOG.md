@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.0.0
+- Updated the name to CircleBuf
+- Updated the includes to more accurately capture those needed
+
 ## v3.0.2
 - Updated preprocessor directives to more easily define when Arduino IDE is used
 - Updated README to better detail the Arduino support

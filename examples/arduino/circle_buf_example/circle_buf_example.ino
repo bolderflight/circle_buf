@@ -29,7 +29,7 @@ void setup() {
   Serial.begin(115200);
   while (!Serial) {}
   /* Create a 10 byte circular buffer */
-  bfs::CircularBuffer<uint8_t, 10> buff;
+  bfs::CircleBuf<uint8_t, 10> buff;
   Serial.print("Starting Capacity: ");
   Serial.println(buff.capacity());
   Serial.print("Starting Size: ");
