@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.0.2
+- Updated preprocessor directives to more easily define when Arduino IDE is used
+- Updated README to better detail the Arduino support
+
 ## v3.0.1
 - Tweaking preprocessor directives to better catch when Arduino IDE is used to compile and when it is not
 

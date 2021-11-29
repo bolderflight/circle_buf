@@ -4,7 +4,7 @@
 ![Bolder Flight Systems Logo](img/logo-words_75.png) &nbsp; &nbsp; ![Arduino Logo](img/arduino_logo_75.png)
 
 # Circular buffer
-This library implements a first in, first out [circular buffer](https://en.wikipedia.org/wiki/Circular_buffer), methods are provided for writing to and reading from the buffer. This library is compatible with Arduino and with CMake build systems. It would also be easy to include with other projects, since it is a header only library consisting of a single file.
+This library implements a first in, first out [circular buffer](https://en.wikipedia.org/wiki/Circular_buffer), methods are provided for writing to and reading from the buffer. This library is compatible with Arduino ARM devices and with CMake build systems. It would also be easy to include with other projects, since it is a header only library consisting of a single file.
    * [License](LICENSE.md)
    * [Changelog](CHANGELOG.md)
    * [Contributing guide](CONTRIBUTING.md)
@@ -18,7 +18,7 @@ Use the Arduino Library Manager to install this library or clone to your Arduino
 #include "circle_buf.h"
 ```
 
-An example Arduino executable is located at *examples/arduino/circle_buf_example/circle_buf_example.ino*.
+An example Arduino executable is located at *examples/arduino/circle_buf_example/circle_buf_example.ino*. Teensy 3.x, 4.x, and LC devices are used for testing under Arduino and this library should be compatible with other ARM devices. This library is *not* expected to work on AVR devices.
 
 ## CMake
 CMake is used to build this library, which is exported as a library target called *circle_buf*. The header is added as:
