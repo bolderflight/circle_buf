@@ -3,7 +3,7 @@
 
 ![Bolder Flight Systems Logo](img/logo-words_75.png) &nbsp; &nbsp; ![Arduino Logo](img/arduino_logo_75.png)
 
-# Circular buffer
+# CircleBuf
 This library implements a first in, first out [circular buffer](https://en.wikipedia.org/wiki/Circular_buffer), methods are provided for writing to and reading from the buffer. This library is compatible with Arduino ARM devices and with CMake build systems. It would also be easy to include with other projects, since it is a header only library consisting of a single file.
    * [License](LICENSE.md)
    * [Changelog](CHANGELOG.md)
@@ -39,16 +39,16 @@ This will build the library, an example executable called *circle_buf_example*, 
 # Namespace
 This library is within the namespace *bfs*
 
-# CircularBuffer
+# CircleBuf
 This class implements the circular buffer.
 
 ## Methods
 
-**CircularBuffer<typename T, size_t N>** Creates a circular buffer object, of type *T* with buffer size *N*.
+**CircleBuf<typename T, size_t N>** Creates a circular buffer object, of type *T* with buffer size *N*.
 
 ```C++
 /* Create a 10 byte circular buffer of uint8_t */
-bfs::CircularBuffer<uint8_t, 10> buff;
+bfs::CircleBuf<uint8_t, 10> buff;
 ```
 
 **bool Write(const T val)** Writes a single value to the buffer. Note the buffer prevents over-writing data. This method returns true on success or false on failure.
@@ -64,7 +64,7 @@ uint8_t test[] = {1, 2, 3, 4, 5};
 size_t ret = buff.Write(test, sizeof(test));
 ```
 
-**T Read()** Reads a single value from the buffer. If the buffer is empty, returns 0.
+**T Read()** Reads a single value from the buffer. If the buffer is empty, returns 0. You can check the *size* method before *Read* to determine whether the buffer is empty or the stored value is 0.
 
 ```C++
 uint8_t val = buff.Read();

@@ -28,7 +28,7 @@
 
 int main() {
   /* Create a 10 byte circular buffer */
-  bfs::CircularBuffer<uint8_t, 10> buff;
+  bfs::CircleBuf<uint8_t, 10> buff;
   std::cout << "Starting Capacity: " << buff.capacity() << std::endl;
   std::cout << "Starting Size: " << buff.size() << std::endl << std::endl;
   /* Write 5 bytes to it */

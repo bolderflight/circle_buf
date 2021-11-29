@@ -1,4 +1,4 @@
-CircularBuffer	KEYWORD1
+CircleBuf	KEYWORD1
 Write	KEYWORD2
 Read	KEYWORD2
 size	KEYWORD2
