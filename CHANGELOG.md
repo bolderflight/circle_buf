@@ -1,5 +1,8 @@
 # Changelog
 
+## v4.0.1
+- Fixed constness of Write method
+
 ## v4.0.0
 - Updated the name to CircleBuf
 - Updated the includes to more accurately capture those needed

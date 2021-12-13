@@ -57,7 +57,7 @@ bfs::CircleBuf<uint8_t, 10> buff;
 bool status = buff.Write(3);
 ```
 
-**std::size_t Write(T &ast; const data, const std::size_t len)** Writes data into the buffer given a pointer to the data and the number of elements to write. Returns the number of elements written into the buffer. Note that the buffer prevents over-writing data, so the number of elements written may be less than the number of elements to write.
+**std::size_t Write(T const &ast; const data, const std::size_t len)** Writes data into the buffer given a pointer to the data and the number of elements to write. Returns the number of elements written into the buffer. Note that the buffer prevents over-writing data, so the number of elements written may be less than the number of elements to write.
 
 ```C++
 uint8_t test[] = {1, 2, 3, 4, 5};
