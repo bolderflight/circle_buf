@@ -48,7 +48,7 @@ class CircleBuf {
     }
     return false;
   }
-  std::size_t Write(T * const data, const std::size_t len) {
+  std::size_t Write(T const * const data, const std::size_t len) {
     if ((len == 0) || (!data)) return 0;
     vals_to_write_ = std::min(len, capacity_ - size_);
     space_avail_ = capacity_ - end_index_;
