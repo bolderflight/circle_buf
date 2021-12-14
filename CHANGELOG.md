@@ -1,5 +1,8 @@
 # Changelog
 
+## v4.0.2
+- Updated CMake minimum version to 3.14 to support FetchContent_MakeAvailable
+
 ## v4.0.1
 - Fixed constness of Write method
 

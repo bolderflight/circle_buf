@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.14)
 # Project information
 project(CircularBuffer
-	VERSION 4.0.1
+	VERSION 4.0.2
 	DESCRIPTION "Circular buffer library."
 	LANGUAGES CXX
 )
