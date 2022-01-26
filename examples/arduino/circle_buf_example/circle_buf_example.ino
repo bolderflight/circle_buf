@@ -86,7 +86,10 @@ void setup() {
   Serial.println("Reading 5 bytes from the buffer, one at a time...");
   Serial.println("Bytes:");
   for (unsigned int i = 0; i < 5; i++) {
-    Serial.println(buff.Read());
+    bfs::optional<uint8_t> ret = buff.Read();
+    if (ret) {
+      Serial.println(ret.value());
+    }
   }
   Serial.print("New Capacity: ");
   Serial.println(buff.capacity());

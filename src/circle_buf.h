@@ -33,8 +33,11 @@
 #include <cstddef>
 #include <cstdint>
 #include <algorithm>
+#include "optional.hpp"  // NOLINT
 
 namespace bfs {
+
+using nonstd::optional;
 
 template<typename T, std::size_t N>
 class CircleBuf {
@@ -64,14 +67,14 @@ class CircleBuf {
     size_ += vals_to_write_;
     return vals_to_write_;
   }
-  T Read() {
+  optional<T> Read() {
+    optional<T> val;
     if (size_) {
-      T val = buffer_[begin_index_];
+      val = buffer_[begin_index_];
       begin_index_ = (begin_index_ + 1) % capacity_;
       size_--;
-      return val;
     }
-    return static_cast<T>(0);
+    return val;
   }
   std::size_t Read(T * const data, const std::size_t len) {
     if ((len == 0) || (!data)) return 0;

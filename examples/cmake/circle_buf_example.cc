@@ -78,7 +78,10 @@ int main() {
   std::cout << "Reading 5 bytes from the buffer, one at a time..." << std::endl;
   std::cout << "Bytes: " << std::endl;
   for (unsigned int i = 0; i < 5; i++) {
-    std::cout << std::to_string(buff.Read()) << std::endl;
+    bfs::optional<uint8_t> ret = buff.Read();
+    if (ret) {
+      std::cout << std::to_string(ret.value()) << std::endl;
+    }
   }
   std::cout << "New Capacity: " << buff.capacity() << std::endl;
   std::cout << "New Size: " << buff.size() << std::endl;
