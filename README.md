@@ -64,10 +64,13 @@ uint8_t test[] = {1, 2, 3, 4, 5};
 std::size_t ret = buff.Write(test, sizeof(test));
 ```
 
-**T Read()** Reads a single value from the buffer. If the buffer is empty, returns 0. You can check the *size* method before *Read* to determine whether the buffer is empty or the stored value is 0.
+**optional T Read()** Reads a single value from the buffer using an interface similar to [std::optional](https://en.cppreference.com/w/cpp/utility/optional) whether a value was returned or not. The optional return interface is provided by [optional-bare](https://github.com/martinmoene/optional-bare). A value would not be returned if the buffer is empty (i.e size = 0).
 
 ```C++
-uint8_t val = buff.Read();
+bfs::optional<uint8_t> val = buff.Read();
+if (val) {
+   std::cout << val.value() << std::endl;
+}
 ```
 
 **std::size_t Read(T &ast; const data, std::size_t len)** Reads elements from the buffer given a pointer to store the data and the maximum number of elements to read. Returns the number of elements read off the buffer.
