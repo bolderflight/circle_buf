@@ -1,5 +1,8 @@
 # Changelog
 
+## v4.0.4
+- Updated include guards
+
 ## v4.0.3
 - Added std::optional support for the read method
 
