@@ -1,5 +1,5 @@
 
-[![Pipeline](https://gitlab.com/bolderflight/software/circle_buf/badges/main/pipeline.svg)](https://gitlab.com/bolderflight/software/circle_buf/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ![Bolder Flight Systems Logo](img/logo-words_75.png) &nbsp; &nbsp; ![Arduino Logo](img/arduino_logo_75.png)
 
