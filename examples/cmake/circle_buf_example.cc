@@ -2,7 +2,7 @@
 * Brian R Taylor
 * brian.taylor@bolderflight.com
 * 
-* Copyright (c) 2021 Bolder Flight Systems Inc
+* Copyright (c) 2023 Bolder Flight Systems Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the “Software”), to
@@ -78,9 +78,10 @@ int main() {
   std::cout << "Reading 5 bytes from the buffer, one at a time..." << std::endl;
   std::cout << "Bytes: " << std::endl;
   for (unsigned int i = 0; i < 5; i++) {
-    bfs::optional<uint8_t> ret = buff.Read();
+    uint8_t val;
+    bool ret = buff.Read(&val);
     if (ret) {
-      std::cout << std::to_string(ret.value()) << std::endl;
+      std::cout << std::to_string(val) << std::endl;
     }
   }
   std::cout << "New Capacity: " << buff.capacity() << std::endl;

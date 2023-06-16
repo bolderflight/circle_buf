@@ -4,7 +4,7 @@
 ![Bolder Flight Systems Logo](img/logo-words_75.png) &nbsp; &nbsp; ![Arduino Logo](img/arduino_logo_75.png)
 
 # CircleBuf
-This library implements a first in, first out [circular buffer](https://en.wikipedia.org/wiki/Circular_buffer), methods are provided for writing to and reading from the buffer. This library is compatible with Arduino ARM devices and with CMake build systems. It would also be easy to include with other projects, since it is a header only library consisting of a single file.
+This library implements a first in, first out [circular buffer](https://en.wikipedia.org/wiki/Circular_buffer), methods are provided for writing to and reading from the buffer. This library is compatible with Arduino and with CMake build systems.
    * [License](LICENSE.md)
    * [Changelog](CHANGELOG.md)
    * [Contributing guide](CONTRIBUTING.md)
@@ -18,7 +18,7 @@ Use the Arduino Library Manager to install this library or clone to your Arduino
 #include "circle_buf.h"
 ```
 
-An example Arduino executable is located at *examples/arduino/circle_buf_example/circle_buf_example.ino*. Teensy 3.x, 4.x, and LC devices are used for testing under Arduino and this library should be compatible with other ARM devices. This library is *not* expected to work on AVR devices.
+An example Arduino executable is located at *examples/arduino/circle_buf_example/circle_buf_example.ino*. Teensy 3.x, 4.x, and LC devices are used for testing under Arduino and this library should be compatible with other devices.
 
 ## CMake
 CMake is used to build this library, which is exported as a library target called *circle_buf*. The header is added as:
@@ -64,12 +64,13 @@ uint8_t test[] = {1, 2, 3, 4, 5};
 std::size_t ret = buff.Write(test, sizeof(test));
 ```
 
-**optional T Read()** Reads a single value from the buffer using an interface similar to [std::optional](https://en.cppreference.com/w/cpp/utility/optional) whether a value was returned or not. The optional return interface is provided by [optional-bare](https://github.com/martinmoene/optional-bare). A value would not be returned if the buffer is empty (i.e size = 0).
+**bool Read(T &ast; const data)** Reads a single value from the buffer given a pointer to store the data. True is returned if a value is returned through the pointer. A value would not be returned if the buffer is empty (i.e size = 0).
 
 ```C++
-bfs::optional<uint8_t> val = buff.Read();
-if (val) {
-   std::cout << val.value() << std::endl;
+uint8_t val;
+bool ret = buff.Read(&val);
+if (ret) {
+   std::cout << std::to_string(val) << std::endl;
 }
 ```
 

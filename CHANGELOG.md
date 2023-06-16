@@ -1,5 +1,8 @@
 # Changelog
 
+## v5.0.0
+- Removed optional
+
 ## v4.0.4
 - Updated include guards
 

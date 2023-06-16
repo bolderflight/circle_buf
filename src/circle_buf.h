@@ -2,7 +2,7 @@
 * Brian R Taylor
 * brian.taylor@bolderflight.com
 * 
-* Copyright (c) 2022 Bolder Flight Systems Inc
+* Copyright (c) 2023 Bolder Flight Systems Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the “Software”), to
@@ -28,18 +28,16 @@
 
 #if defined(ARDUINO)
 #include <Arduino.h>
-#endif
+#else
 #include <cstring>
 #include <cstddef>
 #include <cstdint>
 #include <algorithm>
-#include "optional.hpp"  // NOLINT
+#endif
 
 namespace bfs {
 
-using nonstd::optional;
-
-template<typename T, std::size_t N>
+template<typename T, size_t N>
 class CircleBuf {
  public:
   bool Write(const T val) {
@@ -51,9 +49,13 @@ class CircleBuf {
     }
     return false;
   }
-  std::size_t Write(T const * const data, const std::size_t len) {
+  size_t Write(T const * const data, const size_t len) {
     if ((len == 0) || (!data)) return 0;
+    #if defined(ARDUINO)
+    vals_to_write_ = min(len, capacity_ - size_);
+    #else
     vals_to_write_ = std::min(len, capacity_ - size_);
+    #endif
     space_avail_ = capacity_ - end_index_;
     if (space_avail_ < vals_to_write_) {
       memcpy(buffer_ + end_index_, data, space_avail_ * sizeof(T));
@@ -67,18 +69,22 @@ class CircleBuf {
     size_ += vals_to_write_;
     return vals_to_write_;
   }
-  optional<T> Read() {
-    optional<T> val;
+  bool Read(T * const data) {
+    if (!data) {return false;}
     if (size_) {
-      val = buffer_[begin_index_];
+      *data = buffer_[begin_index_];
       begin_index_ = (begin_index_ + 1) % capacity_;
       size_--;
     }
-    return val;
+    return true;
   }
-  std::size_t Read(T * const data, const std::size_t len) {
+  size_t Read(T * const data, const size_t len) {
     if ((len == 0) || (!data)) return 0;
+    #if defined(ARDUINO)
+    vals_to_read_ = min(len, size_);
+    #else
     vals_to_read_ = std::min(len, size_);
+    #endif
     space_avail_ = capacity_ - begin_index_;
     if (space_avail_ < vals_to_read_) {
       memcpy(data, buffer_ + begin_index_, space_avail_ * sizeof(T));
@@ -92,8 +98,8 @@ class CircleBuf {
     size_ -= vals_to_read_;
     return vals_to_read_;
   }
-  inline std::size_t size() const {return size_;}
-  inline std::size_t capacity() const {return capacity_;}
+  inline size_t size() const {return size_;}
+  inline size_t capacity() const {return capacity_;}
   void Clear() {
     begin_index_ = 0;
     end_index_ = 0;
@@ -102,11 +108,11 @@ class CircleBuf {
 
  private:
   T buffer_[N];
-  std::size_t begin_index_ = 0;
-  std::size_t end_index_ = 0;
-  std::size_t capacity_ = N;
-  std::size_t size_ = 0;
-  std::size_t vals_to_write_, vals_to_read_, space_avail_;
+  size_t begin_index_ = 0;
+  size_t end_index_ = 0;
+  size_t capacity_ = N;
+  size_t size_ = 0;
+  size_t vals_to_write_, vals_to_read_, space_avail_;
 };
 
 }  // namespace bfs

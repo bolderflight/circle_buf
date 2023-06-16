@@ -2,7 +2,7 @@
 * Brian R Taylor
 * brian.taylor@bolderflight.com
 * 
-* Copyright (c) 2021 Bolder Flight Systems Inc
+* Copyright (c) 2023 Bolder Flight Systems Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the “Software”), to
@@ -86,9 +86,10 @@ void setup() {
   Serial.println("Reading 5 bytes from the buffer, one at a time...");
   Serial.println("Bytes:");
   for (unsigned int i = 0; i < 5; i++) {
-    bfs::optional<uint8_t> ret = buff.Read();
+    uint8_t val;
+    bool ret = buff.Read(&val);
     if (ret) {
-      Serial.println(ret.value());
+      Serial.println(val);
     }
   }
   Serial.print("New Capacity: ");
